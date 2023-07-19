@@ -6,9 +6,10 @@ fn config(cfg: &mut web::ServiceConfig) {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    println!("Starting server at 127.0.0.1:8080");
+    let addr = "0.0.0.0:80";
+    println!("Starting server at {}", addr);
     HttpServer::new(|| App::new().configure(config))
-        .bind("127.0.0.1:8080")?
+        .bind(addr)?
         .run()
         .await
 }
