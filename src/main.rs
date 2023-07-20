@@ -2,6 +2,7 @@ use actix_web::{web, App, HttpServer};
 
 fn config(cfg: &mut web::ServiceConfig) {
     cfg.service(web::resource("/").to(|| async { "Hello Nixers!\n" }));
+    cfg.service(web::resource("/rust").to(|| async { "Hello Nixers!\n" }));
 }
 
 #[actix_web::main]
