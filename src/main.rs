@@ -6,7 +6,11 @@ fn config(cfg: &mut web::ServiceConfig) {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let addr = "0.0.0.0:80";
+    let default_port: String = "8080".to_string();
+    let port: String = std::env::var("RUST_PORT")
+        .unwrap_or(default_port);
+
+    let addr = format!("0.0.0.0:{}", port);
     println!("Starting server at {}", addr);
     HttpServer::new(|| App::new().configure(config))
         .bind(addr)?
